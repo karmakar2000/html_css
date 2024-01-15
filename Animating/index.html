@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            overflow: hidden; /* Hide horizontal scrollbar */
+        }
+
+        footer {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes marqueeAnimation {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        marquee {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marqueeAnimation 12s linear infinite;
+            color: white;
+        }
+    </style>
+    <title>Animation Rain</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cloud"></div>
+    </div>
+    <script>
+        function rain() {
+            let cloud = document.querySelector('.cloud');
+            let e = document.createElement('div');
+            let left = Math.floor(Math.random() * 310);
+            let width = Math.random() * 5;
+            let height = Math.random() * 50;
+            let duration = Math.random() * 0.5;
+
+            e.classList.add('drop');
+            cloud.appendChild(e);
+            e.style.left = left + 'px';
+            e.style.width = 0.5 + width + 'px';
+            e.style.height = 0.5 + height + 'px';
+            e.style.animationDuration = 1 + duration + 's';
+
+            setTimeout(function() {
+                cloud.removeChild(e);
+            }, 2000);
+        }
+
+        setInterval(function() {
+            rain();
+        }, 20);
+    </script>
+    <footer>
+        <marquee behavior="scroll" direction="left">Designed By Deep Karmakar</marquee>
+    </footer>
+</body>
+</html>
